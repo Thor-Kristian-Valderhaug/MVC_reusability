@@ -5,12 +5,11 @@ namespace MVC_reusability.Models
 {
     public class BaseModel
     {
+
      
     
     }
-
-
-
+    
     public static class ModelExtensions
     {
         public static T To<T> (this object baseModel ) where T :  BaseModel, new ()

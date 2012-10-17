@@ -12,22 +12,27 @@ namespace MVC_reusability.Controllers
             return model;
         }
 
-         protected ViewResult BaseView(object model)
+         protected ViewResult BaseView(object model = null)
          {
              var viewName = RouteData.Values["Action"] as string;
              var controllerName = RouteData.Values["Controller"] as string;
-             var masterName = string.Format("~/View/{0}/{1}.cshtml", controllerName, viewName);
+             var masterName = string.Format("~/Views/{0}/{1}.cshtml", controllerName, viewName);
 
              return View("_Empty", masterName, model);
          }
 
-         protected ViewResult NestedView(object model)
+         protected ViewResult NestedView(object model = null)
          {
              var viewName = RouteData.Values["Action"] as string;
              var controllerName = RouteData.Values["Controller"] as string;
-             var masterName = string.Format("~/View/{0}/{1}.cshtml", controllerName, viewName);
+             var masterName = string.Format("~/Views/{0}/{1}.cshtml", controllerName, viewName);
 
              return View(viewName, masterName, model);
          }
+
+        protected bool NotViewResult(ActionResult result)
+        {
+            return !(result is ViewResultBase);
+        }
     }
 }
