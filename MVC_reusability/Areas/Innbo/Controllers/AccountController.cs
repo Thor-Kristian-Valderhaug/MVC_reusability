@@ -20,12 +20,21 @@ namespace MVC_reusability.Areas.Innbo.Controllers
             return View(innboAccountModel);
         }
 
+
         public override ActionResult ActionWithError()
         {
-            var model = GetPopulatedModel<AccountModel>(base.ActionWithError());
-            model.Adresse = "Denne har ikke så mye boilerplate";
+            ViewResultBase viewResult;
 
-            return View(model);
+            ActionResult result = base.ActionWithError();
+            if (NotViewResult(result))
+                return result;
+
+            viewResult = result as ViewResultBase;
+
+            var motorvognAccountModel = GetModel<AccountModel>(viewResult);
+            motorvognAccountModel.Adresse = "En adresse til noe lurt";
+
+            return View(motorvognAccountModel);
         }
     }
 }

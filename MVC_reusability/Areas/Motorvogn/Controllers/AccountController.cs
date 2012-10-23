@@ -20,5 +20,21 @@ namespace MVC_reusability.Areas.Motorvogn.Controllers
 
             return View(motorvognAccountModel);
         }
+
+        public override ActionResult ActionWithError()
+        {
+            ViewResultBase viewResult;
+
+            var result = base.ActionWithError();
+            if (NotViewResult(result))
+                return result;
+
+            viewResult = result as ViewResultBase;
+
+            var motorvognAccountModel = GetModel<AccountModel>(viewResult);
+            motorvognAccountModel.RegNr = "Et fint reg nummer";
+
+            return View(motorvognAccountModel);
+        }
     }
 }

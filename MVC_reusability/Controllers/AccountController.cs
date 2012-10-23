@@ -27,9 +27,15 @@ namespace MVC_reusability.Controllers
                 AOtherCommonProperty = "Enda mer felles info"
             };
 
-            return Redirect("http:\\www.google.com");
+            if(NoeSpennendeBuisnisslogikk())
+                return Redirect("http://www.google.com");
+            
+            return View(model);
+        }
 
-            //return View(model);
+        private static bool NoeSpennendeBuisnisslogikk()
+        {
+            return true;
         }
     }
 }

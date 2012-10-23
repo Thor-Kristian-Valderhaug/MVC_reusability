@@ -1,0 +1,30 @@
+﻿@using System.Activities.Statements
+@model MVC_reusability.Models.AccountModel
+@{
+   Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h1>
+        @if (IsSectionDefined("ProductDetails"))
+        {
+            @RenderSection("ProductHeader", false)
+        }else
+        {
+            <span>Root area with a potensial error</span>
+        }
+    </h1>
+
+    <h2>Her er det felles informasjon</h2>
+    @Model.ACommonProperty
+    @if (IsSectionDefined("ProductDetails"))
+    {
+        <h3>Datailer om produktet</h3>
+        @RenderSection("ProductDetails", false)
+    }
+    
+    <h2>Her kommer det enda mer felles informasjon </h2>
+    @Model.AOtherCommonProperty
+    @RenderBody()
+
+</div>
