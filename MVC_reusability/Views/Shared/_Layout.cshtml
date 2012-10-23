@@ -2,17 +2,21 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Demo of noe</title>
+        <title>Enterprise MVC</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <link href="~/Content/Site.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <header>            
             <nav>
-                <ul id="menu">
+                <ul class="menu">
                     <li>@Html.ActionLink("Root", "Index", "Account", new { Area = "" }, null)</li>
                     <li>@Html.ActionLink("Motorvogn", "Index", "Account", new { Area = "Motorvogn" }, null)</li>
                     <li>@Html.ActionLink("Innbo", "Index", "Account", new { Area = "Innbo" }, null)</li>
+                    
+                </ul>
+                <ul class="menu">
+                    <li>@Html.ActionLink("Redirect", "ActionWithError", "Account", new { Area = "Motorvogn" }, null)</li>
                 </ul>
             </nav>
                 

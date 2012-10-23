@@ -8,14 +8,13 @@ namespace MVC_reusability
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-
             filters.Add(new AbortExecutionExceptionAttrubute());
         }
     }
 
     public class AbortExecutionExceptionAttrubute : HandleErrorAttribute
     {
-        public new void OnException(ExceptionContext filterContext)
+        public override void OnException(ExceptionContext filterContext)
         {
             base.OnException(filterContext);
 
