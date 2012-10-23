@@ -5,13 +5,6 @@ namespace MVC_reusability.Controllers
 {
     public class BaseController : Controller
     {
-        protected T GetModel<T>(ActionResult result) where T : BaseModel, new ()
-        {
-            var viewResult = (ViewResultBase) result;
-            var model = viewResult.Model.To<T>();
-            return model;
-        }
-
          protected ViewResult BaseView(object model = null)
          {
              var viewName = RouteData.Values["Action"] as string;
@@ -24,6 +17,13 @@ namespace MVC_reusability.Controllers
         protected bool NotViewResult(ActionResult result)
         {
             return !(result is ViewResultBase);
+        }
+
+        protected T GetModel<T>(ActionResult result) where T : BaseModel, new()
+        {
+            var viewResult = (ViewResultBase)result;
+            var model = viewResult.Model.To<T>();
+            return model;
         }
 
         protected T GetPopulatedModel<T>(ActionResult actionResult)
