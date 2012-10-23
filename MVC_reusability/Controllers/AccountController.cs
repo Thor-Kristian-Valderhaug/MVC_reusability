@@ -15,7 +15,6 @@ namespace MVC_reusability.Controllers
                             };
 
             return BaseView(model);
-            //return View(model);
         }
 
 
@@ -23,8 +22,8 @@ namespace MVC_reusability.Controllers
         {
             var model = new AccountModel
             {
-                ACommonProperty = "Noe felles info",
-                AOtherCommonProperty = "Enda mer felles info"
+                ACommonProperty = "Info som ikke brukes",
+                AOtherCommonProperty = "Enda mer felles info som ikke brukes"
             };
 
             if(NoeSpennendeBuisnisslogikk())
