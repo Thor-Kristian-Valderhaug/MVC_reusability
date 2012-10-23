@@ -16,8 +16,8 @@ namespace MVC_reusability.Areas.Innbo
         {
             context.MapRoute(
                 "Innbo_default",
-                "Innbo/{controller}/{action}/{id}",
-                new { controller = "Account", action = "Index", id = UrlParameter.Optional },
+                "Innbo/{controller}/{action}",
+                new { controller = "Account", action = "Index" },
                 new[] {"MVC_reusability.Areas.Innbo.Controllers"}
             );
         }
