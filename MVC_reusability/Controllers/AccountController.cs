@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using MVC_reusability.Domain;
 using MVC_reusability.Models;
 
 namespace MVC_reusability.Controllers
@@ -8,33 +9,42 @@ namespace MVC_reusability.Controllers
     {
         public virtual ActionResult Index()
         {
-            var model = new AccountModel
-                            {
-                                ACommonProperty = "Noe felles info",
-                                AOtherCommonProperty = "Enda mer felles info"
-                            };
+            var domainModel = DomainFactory.GetAccount();
+            var mvcModel = ToMvcModel(domainModel);
 
-            return BaseView(model);
+            return BaseView(mvcModel);
         }
 
 
         public virtual ActionResult ActionWithError()
         {
-            var model = new AccountModel
-            {
-                ACommonProperty = "Info som ikke brukes",
-                AOtherCommonProperty = "Enda mer felles info som ikke brukes"
-            };
+            var domainModel = DomainFactory.GetAccount();
+            var mvcModel = ToMvcModel(domainModel);
 
             if(NoeSpennendeBuisnisslogikk())
                 return Redirect("http://www.google.com");
             
-            return View(model);
+            return View(mvcModel);
         }
+
+
+        #region Private helper methods
 
         private static bool NoeSpennendeBuisnisslogikk()
         {
             return true;
         }
+
+        private static AccountModel ToMvcModel(DomainAccountModel model)
+        {
+            return new AccountModel
+                       {
+                           ACommonProperty = model.Name,
+                           AOtherCommonProperty = model.Alder
+                       };
+        }
+
+        #endregion
+
     }
 }

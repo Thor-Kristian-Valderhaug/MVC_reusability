@@ -5,21 +5,39 @@ namespace MVC_reusability.Areas.Motorvogn.Controllers
 {
     public class AccountController : MVC_reusability.Controllers.AccountController
     {
+        #region Verbose, with lots of boilerplate code
+
+        //public override ActionResult Index()
+        //{
+        //    ViewResultBase viewResult;
+
+        //    var result = base.Index();
+        //    if (NotViewResult(result))
+        //        return result;
+
+        //    viewResult = result as ViewResultBase;
+
+        //    var motorvognAccountModel = GetModel<AccountModel>(viewResult);
+        //    motorvognAccountModel.RegNr = "Et fint reg nummer";
+
+        //    return View(motorvognAccountModel);
+        //}
+
+        #endregion
+
+        #region Less boilerplate
+        
         public override ActionResult Index()
         {
-            ViewResultBase viewResult;
-
-            var result = base.Index();
-            if (NotViewResult(result))
-                return result;
-
-            viewResult = result as ViewResultBase;
-
-            var motorvognAccountModel = GetModel<AccountModel>(viewResult);
+            var motorvognAccountModel = GetPopulatedModel<AccountModel>(base.Index());
             motorvognAccountModel.RegNr = "Et fint reg nummer";
 
             return View(motorvognAccountModel);
         }
+
+        #endregion
+        
+        #region Passing through NonViewResult from Base
 
         public override ActionResult ActionWithError()
         {
@@ -36,5 +54,8 @@ namespace MVC_reusability.Areas.Motorvogn.Controllers
 
             return View(motorvognAccountModel);
         }
+
+        #endregion
+
     }
 }
