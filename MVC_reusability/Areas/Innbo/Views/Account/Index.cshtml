@@ -1,11 +1,15 @@
-﻿@model MVC_reusability.Areas.Innbo.Models.AccountModel
+﻿@{
+    Layout = "~/Views/Account/Index.cshtml";
+}
+
+@model MVC_reusability.Areas.Innbo.Models.AccountModel
 
 @section ProductHeader {
-    Innbo
+    Innbo area
 }
 
 @section ProductDetails {
-<div class="innbo">
-    <b>Adresse: </b> @Model.Adresse
-</div>
+    <div class="innbo">
+        <b>Adresse: </b> @Model.Adresse
+    </div>
 }

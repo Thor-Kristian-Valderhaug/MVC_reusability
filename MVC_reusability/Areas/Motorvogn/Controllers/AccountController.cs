@@ -17,7 +17,8 @@ namespace MVC_reusability.Areas.Motorvogn.Controllers
 
             var motorvognAccountModel = GetModel<AccountModel>(viewResult);
             motorvognAccountModel.RegNr = "Et fint reg nummer";
-            return NestedView(motorvognAccountModel);
+
+            return View(motorvognAccountModel);
         }
     }
 }

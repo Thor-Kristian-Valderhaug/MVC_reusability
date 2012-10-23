@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Mvc;
 
 namespace MVC_reusability
@@ -8,6 +9,36 @@ namespace MVC_reusability
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+
+        filters.Add(new AbortExecutionExceptionAttrubute());
         }
+    }
+
+    public class AbortExecutionExceptionAttrubute : HandleErrorAttribute
+    {
+        public void OnException(ExceptionContext filterContext)
+        {
+            
+            base.OnException(filterContext);
+
+            var notCorrectException = !(filterContext.Exception is AbortExecutionException);
+            if(notCorrectException)
+                return;
+
+            var exception = filterContext.Exception as AbortExecutionException;
+
+            filterContext.ExceptionHandled = true;
+            filterContext.Result = exception.ActionResult;
+        }
+        }
+
+    public class AbortExecutionException : Exception
+    {
+        public AbortExecutionException(ActionResult actionResult)
+        {
+            ActionResult = actionResult;
+        }
+
+        public ActionResult ActionResult { get; set; }
     }
 }

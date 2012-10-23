@@ -34,5 +34,17 @@ namespace MVC_reusability.Controllers
         {
             return !(result is ViewResultBase);
         }
+
+        protected T GetPopulatedModel<T>(ActionResult actionResult)
+            where T : BaseModel, new()
+        {
+            
+            if (NotViewResult(actionResult))
+                throw new AbortExecutionException(actionResult);
+
+            var viewResult = actionResult as ViewResultBase;
+
+            return GetModel<T>(viewResult);
+        }
     }
 }

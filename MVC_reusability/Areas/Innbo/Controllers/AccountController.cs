@@ -17,7 +17,15 @@ namespace MVC_reusability.Areas.Innbo.Controllers
 
             var innboAccountModel = GetModel<AccountModel>(viewResult);
             innboAccountModel.Adresse = "Et eller annet sted i oslo";
-            return NestedView(innboAccountModel);
+            return View(innboAccountModel);
+        }
+
+        public override ActionResult ActionWithError()
+        {
+            var model = GetPopulatedModel<AccountModel>(base.ActionWithError());
+            model.Adresse = "Denne har ikke så mye boilerplate";
+
+            return View(model);
         }
     }
 }
