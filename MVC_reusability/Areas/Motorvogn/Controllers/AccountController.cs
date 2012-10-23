@@ -46,32 +46,22 @@ namespace MVC_reusability.Areas.Motorvogn.Controllers
         public override ActionResult Index()
         {
             var motorvognAccountModel = GetPopulatedModel<AccountModel>(base.Index());
-            motorvognAccountModel.RegNr = "Et fint reg nummer";
+            var motorvognDomainModel = Domain.DomainFactory.GetMotorvognAccountModel();
+            motorvognAccountModel.RegNr = motorvognDomainModel.RegNr;
 
             return View(motorvognAccountModel);
         }
-
-        #endregion
-        
-        #region Passing through NonViewResult from Base
 
         public override ActionResult ActionWithError()
         {
-            ViewResultBase viewResult;
-
-            var result = base.ActionWithError();
-            if (NotViewResult(result))
-                return result;
-
-            viewResult = result as ViewResultBase;
-
-            var motorvognAccountModel = GetModel<AccountModel>(viewResult);
-            motorvognAccountModel.RegNr = "Et fint reg nummer";
+            
+            var motorvognAccountModel = GetPopulatedModel<AccountModel>(base.ActionWithError());
+            var motorvognDomainModel = Domain.DomainFactory.GetMotorvognAccountModel();
+            motorvognAccountModel.RegNr = motorvognDomainModel.RegNr;
 
             return View(motorvognAccountModel);
         }
 
         #endregion
-
     }
 }

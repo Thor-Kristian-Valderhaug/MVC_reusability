@@ -10,6 +10,19 @@
                            Alder = 25
                        };
         }
+
+        public static MotorvognDomainModel GetMotorvognAccountModel()
+        {
+            return new MotorvognDomainModel
+                       {
+                           RegNr = "Ikke registrert"
+                       };
+        }
+    }
+
+    public class MotorvognDomainModel
+    {
+        public string RegNr {get; set; }
     }
 
     public class DomainAccountModel
