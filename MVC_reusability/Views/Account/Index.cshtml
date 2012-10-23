@@ -3,6 +3,7 @@
 @{
    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    @RenderBody()
 
 <div>
     <h1>
@@ -19,12 +20,11 @@
     @Model.ACommonProperty
     @if (IsSectionDefined("ProductDetails"))
     {
-        <h3>Datailer om produktet</h3>
+        <h2>Datailer om produktet</h2>
         @RenderSection("ProductDetails", false)
     }
     
     <h2>Her kommer det enda mer felles informasjon </h2>
     @Model.AOtherCommonProperty
-    @RenderBody()
 
 </div>
