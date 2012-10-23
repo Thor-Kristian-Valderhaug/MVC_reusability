@@ -19,22 +19,5 @@ namespace MVC_reusability.Areas.Innbo.Controllers
             innboAccountModel.Adresse = "Et eller annet sted i oslo";
             return View(innboAccountModel);
         }
-
-
-        public override ActionResult ActionWithError()
-        {
-            ViewResultBase viewResult;
-
-            ActionResult result = base.ActionWithError();
-            if (NotViewResult(result))
-                return result;
-
-            viewResult = result as ViewResultBase;
-
-            var motorvognAccountModel = GetModel<AccountModel>(viewResult);
-            motorvognAccountModel.Adresse = "En adresse til noe lurt";
-
-            return View(motorvognAccountModel);
-        }
     }
 }
