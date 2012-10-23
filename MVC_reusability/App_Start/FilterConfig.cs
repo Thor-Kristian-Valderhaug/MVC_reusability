@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MVC_reusability
@@ -10,19 +9,18 @@ namespace MVC_reusability
         {
             filters.Add(new HandleErrorAttribute());
 
-        filters.Add(new AbortExecutionExceptionAttrubute());
+            filters.Add(new AbortExecutionExceptionAttrubute());
         }
     }
 
     public class AbortExecutionExceptionAttrubute : HandleErrorAttribute
     {
-        public void OnException(ExceptionContext filterContext)
+        public new void OnException(ExceptionContext filterContext)
         {
-            
             base.OnException(filterContext);
 
-            var notCorrectException = !(filterContext.Exception is AbortExecutionException);
-            if(notCorrectException)
+            bool notCorrectException = !(filterContext.Exception is AbortExecutionException);
+            if (notCorrectException)
                 return;
 
             var exception = filterContext.Exception as AbortExecutionException;
@@ -30,7 +28,7 @@ namespace MVC_reusability
             filterContext.ExceptionHandled = true;
             filterContext.Result = exception.ActionResult;
         }
-        }
+    }
 
     public class AbortExecutionException : Exception
     {
