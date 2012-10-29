@@ -39,8 +39,10 @@ namespace MVC_reusability.Controllers
         {
             return new AccountModel
                        {
-                           ACommonProperty = model.Name,
-                           AOtherCommonProperty = model.Alder
+                           Name = model.Name,
+                           Address = model.Address,
+                           DueDate = model.DueDate,
+                           InsurenceAmount = model.InsurenceAmount
                        };
         }
 

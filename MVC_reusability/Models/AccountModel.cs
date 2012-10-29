@@ -1,8 +1,12 @@
-﻿namespace MVC_reusability.Models
+﻿using System;
+
+namespace MVC_reusability.Models
 {
     public class AccountModel: BaseModel
     {
-        public string ACommonProperty { get; set; }
-        public int AOtherCommonProperty { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public DateTime DueDate { get; set; }
+        public double InsurenceAmount { get; set; }
     }
 }

@@ -16,7 +16,10 @@ namespace MVC_reusability.Areas.Innbo.Controllers
             viewResult = result as ViewResultBase;
 
             var innboAccountModel = GetModel<AccountModel>(viewResult);
-            innboAccountModel.Adresse = "Et eller annet sted i oslo";
+
+            innboAccountModel.Adresse = "Hytta mi";
+            innboAccountModel.BoAreale = 20;
+            
             return View(innboAccountModel);
         }
     }

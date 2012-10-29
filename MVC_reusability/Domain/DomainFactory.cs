@@ -1,4 +1,6 @@
-﻿namespace MVC_reusability.Domain
+﻿using System;
+
+namespace MVC_reusability.Domain
 {
     public static class DomainFactory
     {
@@ -7,7 +9,9 @@
             return new DomainAccountModel
                        {
                            Name = "Thor Kristian",
-                           Alder = 25
+                           Address = "Eiriks gate 18",
+                           DueDate = new DateTime(2012,10,09),
+                           InsurenceAmount = 1560
                        };
         }
 
@@ -15,7 +19,9 @@
         {
             return new MotorvognDomainModel
                        {
-                           RegNr = "Ikke registrert"
+                           RegNr = "AB 15600",
+                           Model = "Ford",
+                           YearModel = 1999
                        };
         }
     }
@@ -23,11 +29,15 @@
     public class MotorvognDomainModel
     {
         public string RegNr {get; set; }
+        public string Model { get; set; }
+        public int YearModel { get; set; }
     }
 
     public class DomainAccountModel
     {
         public string Name { get; set; }
-        public int Alder { get; set; }
+        public string Address { get; set; }
+        public DateTime DueDate { get; set; }
+        public double InsurenceAmount { get; set; }
     }
 }

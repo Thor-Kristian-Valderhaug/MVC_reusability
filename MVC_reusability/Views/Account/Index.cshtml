@@ -10,21 +10,31 @@
         @if (IsSectionDefined("ProductDetails"))
         {
             @RenderSection("ProductHeader", false)
-        }else
+        }
+        else
         {
             <span>Root area</span>
         }
     </h1>
 
     <h2>Her er det felles informasjon</h2>
-    @Model.ACommonProperty
+    <b>Navn: </b>@Model.Name<br/>
+    <b>Adresse: </b> @Model.Address<br/>
     @if (IsSectionDefined("ProductDetails"))
     {
-        <h2>Datailer om produktet</h2>
-        @RenderSection("ProductDetails", false)
+        <div class="client-specific">
+            @RenderSection("ProductDetails", false)
+        </div>
     }
     
-    <h2>Her kommer det enda mer felles informasjon </h2>
-    @Model.AOtherCommonProperty
-
+    <b>Forfalls dato: </b> @Model.DueDate.ToString("dd/MM")<br/>
+    <b>Forsikkringspremie: </b> @Model.InsurenceAmount.ToString("C")<br/>
+    
+     @if (IsSectionDefined("ProductCommands"))
+    {
+        <div class="client-specific">
+            @RenderSection("ProductCommands", false)
+        </div>
+    }
+    
 </div>

@@ -16,7 +16,7 @@
     </h1>
 
     <h2>Her er det felles informasjon</h2>
-    @Model.ACommonProperty
+    @Model.Name
     @if (IsSectionDefined("ProductDetails"))
     {
         <h3>Datailer om produktet</h3>
@@ -24,7 +24,7 @@
     }
     
     <h2>Her kommer det enda mer felles informasjon </h2>
-    @Model.AOtherCommonProperty
+    @Model.Address
     @RenderBody()
 
 </div>

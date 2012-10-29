@@ -7,60 +7,64 @@ namespace MVC_reusability.Areas.Motorvogn.Controllers
     {
         #region Verbose, with lots of boilerplate code
 
-        //public override ActionResult Index()
-        //{
-        //    ViewResultBase viewResult;
-
-        //    var result = base.Index();
-        //    if (NotViewResult(result))
-        //        return result;
-
-        //    viewResult = result as ViewResultBase;
-
-        //    var motorvognAccountModel = GetModel<AccountModel>(viewResult);
-        //    motorvognAccountModel.RegNr = "Et fint reg nummer";
-
-        //    return View(motorvognAccountModel);
-        //}
-
-        //public override ActionResult ActionWithError()
-        //{
-        //    ViewResultBase viewResult;
-
-        //    var result = base.ActionWithError();
-        //    if (NotViewResult(result))
-        //        return result;
-
-        //    viewResult = result as ViewResultBase;
-
-        //    var motorvognAccountModel = GetModel<AccountModel>(viewResult);
-        //    motorvognAccountModel.RegNr = "Et fint reg nummer";
-
-        //    return View(motorvognAccountModel);
-        //}
-
-        #endregion
-
-        #region Less boilerplate
-        
         public override ActionResult Index()
         {
-            var motorvognAccountModel = GetPopulatedModel<AccountModel>(base.Index());
-            var motorvognDomainModel = Domain.DomainFactory.GetMotorvognAccountModel();
-            motorvognAccountModel.RegNr = motorvognDomainModel.RegNr;
+            ViewResultBase viewResult;
+
+            var result = base.Index();
+            if (NotViewResult(result))
+                return result;
+
+            viewResult = result as ViewResultBase;
+
+            var motorvognAccountModel = GetModel<AccountModel>(viewResult);
+            motorvognAccountModel.RegNr = "Et fint reg nummer";
 
             return View(motorvognAccountModel);
         }
 
         public override ActionResult ActionWithError()
         {
-            
-            var motorvognAccountModel = GetPopulatedModel<AccountModel>(base.ActionWithError());
+            ViewResultBase viewResult;
+
+            var result = base.ActionWithError();
+            if (NotViewResult(result))
+                return result;
+
+            viewResult = result as ViewResultBase;
+
+            var motorvognAccountModel = GetModel<AccountModel>(viewResult);
+
             var motorvognDomainModel = Domain.DomainFactory.GetMotorvognAccountModel();
             motorvognAccountModel.RegNr = motorvognDomainModel.RegNr;
+            motorvognAccountModel.Model = motorvognDomainModel.Model;
+            motorvognAccountModel.YearModel = motorvognDomainModel.YearModel;
 
             return View(motorvognAccountModel);
         }
+
+        #endregion
+
+        #region Less boilerplate
+
+        //public override ActionResult Index()
+        //{
+        //    var motorvognAccountModel = GetPopulatedModel<AccountModel>(base.Index());
+        //    var motorvognDomainModel = Domain.DomainFactory.GetMotorvognAccountModel();
+        //    motorvognAccountModel.RegNr = motorvognDomainModel.RegNr;
+
+        //    return View(motorvognAccountModel);
+        //}
+
+        //public override ActionResult ActionWithError()
+        //{
+
+        //    var motorvognAccountModel = GetPopulatedModel<AccountModel>(base.ActionWithError());
+        //    var motorvognDomainModel = Domain.DomainFactory.GetMotorvognAccountModel();
+        //    motorvognAccountModel.RegNr = motorvognDomainModel.RegNr;
+
+        //    return View(motorvognAccountModel);
+        //}
 
         #endregion
     }
